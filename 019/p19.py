@@ -1,0 +1,55 @@
+dayOfTheWeek = 0
+month = 1
+day = 1
+year = 1900
+numSundays = 0
+
+def isLeapYear(year):
+	if((year % 4 == 0) and (year % 100 != 0)) :
+		return True
+	else:
+		if(year % 400 == 0) :
+			return True
+	return False
+
+def lastDayOfMonth(month, year):
+	if(month == 4 or month == 6 or month == 9 or month == 11):
+		return 30
+	if(month == 2):
+		if(isLeapYear(year)):
+			return 29
+		else:
+			return 28
+	return 31
+
+
+
+while(not(month == 12 and day == 31)):
+	if (day == lastDayOfMonth(month, year)):
+		day = 1
+		month = month + 1
+	else:
+		day = day + 1
+	dayOfTheWeek = (dayOfTheWeek + 1) % 7
+year = year+1
+month = 1
+day = 1
+dayOfTheWeek = (dayOfTheWeek + 1) % 7
+
+while(not(month == 12 and day == 31 and year == 2000)):
+	if(dayOfTheWeek == 6 and day == 1):
+		numSundays = numSundays + 1	
+	
+	if (day == lastDayOfMonth(month, year)):
+		day = 1
+		month = month + 1
+	else:
+		day = day + 1
+	dayOfTheWeek = (dayOfTheWeek + 1) % 7
+	if(month == 13) :
+		month = 1
+		year = year + 1
+			
+
+print(numSundays)
+
